@@ -4,9 +4,13 @@ const db = require('../database/models'); //Requerimos la conexión a la base de
 const mainController = {
     index: function(req, res){        
         //Nuestro código.
-
-        
-        res.render("index")
+        db.Movie.findAll()
+            .then( function (data) {                
+                res.render("index", {movies: data})                
+            })
+            .catch( function (error){
+                console.log(error)
+            })        
     }   
 }
 
